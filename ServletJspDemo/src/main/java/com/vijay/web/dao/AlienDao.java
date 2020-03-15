@@ -5,9 +5,9 @@ import java.sql.*;
 import com.vijay.web.model.Alien;
 
 public class AlienDao {
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String user = "vijay";
-	String pass = "vijay";
+	String url = "jdbc:mysql://localhost:3306/student";
+	String user = "root";
+	String pass = "root";
 
 	public Alien getAlien(int aid) {
 
@@ -18,13 +18,13 @@ public class AlienDao {
 		 */
 
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("com.mysql.jdbc.Driver");
 
 			Connection con = DriverManager.getConnection(url, user, pass);
 
 			Statement st = con.createStatement();
 
-			ResultSet rs = st.executeQuery("select *  from vijay.Alien where aid=" + aid);
+			ResultSet rs = st.executeQuery("select *  from Aliens where aid=" + aid);
 
 			if (rs.next()) {
 				a.setAid(rs.getInt("aid"));
